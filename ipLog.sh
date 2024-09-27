@@ -36,20 +36,24 @@ if test $# = 0
         tail -n 100 "/var/log/auth.log"
         exit 0
 fi
-# /var/log/auth.log
 
 # ONLY DIRECTORY OR IP
-"""if test $# = 1
+if test $# = 1
 then
     if test -d $1
         # IS DIRECTORY
         then
+            echo "Directorio"
 
         # IS IP
-        else
+        elif ip_checker $1
+            echo "/var/log/auth.log"
+
+
 
     fi
-fi"""
+fi
+
 # DIRECOTIO AND IP
 if test -d $1 && ip_checker $2
 then
