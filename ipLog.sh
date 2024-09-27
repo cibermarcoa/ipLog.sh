@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 ip_checker() {
     ip1=$(echo "$1" | cut -d '.' -f 1)
     ip2=$(echo "$1" | cut -d '.' -f 2)
