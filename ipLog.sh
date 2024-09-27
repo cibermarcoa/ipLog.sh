@@ -2,9 +2,18 @@
 
 # EXCEDEED ARGUMENTS
 if test $# -gt 2
+    then
+        echo "ERROR: Argumentos innecesarios. La llamada debe de ser así: ./ipLog.sh [<path>] [<ip>]"
+        exit 1
+fi
 
 # NOTING
 if test $# = 0
+    then
+        tail -n 100 "/var/log/auth.log"
+        exit 0
+if
+# /var/log/auth.log
 
 # ONLY DIRECTORY OR IP
 if test $# = 1
