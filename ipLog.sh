@@ -37,11 +37,11 @@ if test $# = 0
     then
         tail -n 100 "/var/log/auth.log"
         exit 0
-if
+fi
 # /var/log/auth.log
 
 # ONLY DIRECTORY OR IP
-if test $# = 1
+"""if test $# = 1
 then
     if test -d $1
         # IS DIRECTORY
@@ -51,8 +51,7 @@ then
         else
 
     fi
-fi
-
+fi"""
 # DIRECOTIO AND IP
 if test -d $1 && ip_checker $2
 then
@@ -60,6 +59,6 @@ then
     logsFiles=$(find $1 -name "*.log")
     for LOG in $logsFiles
     do
-        
+        grep $2 $LOG
     done
 fi
