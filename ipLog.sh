@@ -44,10 +44,12 @@ if test $# = 1
         if test -d $1
             # IS DIRECTORY
             then
-                echo "Directorio"
+                IP=$(grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /home/user/Descargas/Ejemplo_auth.log | tail -n 1)
+                # Falta por hacer esto. Con la variable IP buscar en todos los ficheros acabados en .log del direcotrio pasado como argumento
             # IS IP
             else ip_checker $1
-                echo "/var/log/auth.log"
+                echo "Buscando "$1" en /var/log/auth.log"
+                echo $(grep -o "$1" /home/user/Descargas/Ejemplo_auth.log | wc -l) "$1"
         fi
 fi
 
