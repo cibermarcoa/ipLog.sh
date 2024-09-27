@@ -1,16 +1,32 @@
 #!/bin/bash
 
-
-# DIRECOTIO AND IP
-
-# ONLY IP
-
-# ONLY DIRECTORY
+# EXCEDEED ARGUMENTS
+if test $# -gt 2
 
 # NOTING
+if test $# = 0
+
+# ONLY DIRECTORY OR IP
+if test $# = 1
+then
+    if test -d $1
+        # IS DIRECTORY
+        then
+
+        # IS IP
+        else
+
+    fi
+fi
+
+# DIRECOTIO AND IP
+if test 
 
 
-if test -d $1
+
+
+
+
 
 ip1=$(echo "$1" | cut -d '.' -f 1)
 ip2=$(echo "$1" | cut -d '.' -f 2)
