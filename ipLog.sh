@@ -1,5 +1,17 @@
 #!/bin/bash
 
+
+# DIRECOTIO AND IP
+
+# ONLY IP
+
+# ONLY DIRECTORY
+
+# NOTING
+
+
+if test -d $1
+
 ip1=$(echo "$1" | cut -d '.' -f 1)
 ip2=$(echo "$1" | cut -d '.' -f 2)
 ip3=$(echo "$1" | cut -d '.' -f 3)
