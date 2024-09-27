@@ -17,9 +17,10 @@ ip_checker() {
         test "$ip3" -ge 0 && test "$ip3" -lt 256 &&
         test "$ip4" -ge 0 && test "$ip4" -lt 256
         then
-            echo "Valid"
+            return 1
         else
-            echo "Invalid"
+            echo "Dirección IP invalida"
+            exit 1
     fi
 }
 
@@ -39,19 +40,15 @@ fi
 
 # ONLY DIRECTORY OR IP
 if test $# = 1
-then
-    if test -d $1
-        # IS DIRECTORY
-        then
-            echo "Directorio"
-
-        # IS IP
-        elif ip_checker $1
-            echo "/var/log/auth.log"
-
-
-
-    fi
+    then
+        if test -d $1
+            # IS DIRECTORY
+            then
+                echo "Directorio"
+            # IS IP
+            else ip_checker $1
+                echo "/var/log/auth.log"
+        fi
 fi
 
 # DIRECOTIO AND IP
