@@ -44,22 +44,33 @@ if test $# = 1
         if test -d $1
             # IS DIRECTORY
             then
-                IP=$(grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /home/user/Descargas/Ejemplo_auth.log | tail -n 1)
-                # Falta por hacer esto. Con la variable IP buscar en todos los ficheros acabados en .log del direcotrio pasado como argumento
+                IP=$(grep -oE '[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}' /var/log/auth.log | tail -n 1)
+                echo Buscando la IP: $IP en el directorio $1
+                logsFiles=$(find $1 -name "*.log")
+                for LOG in $logsFiles
+                do
+                    coincidences=$(grep -o $IP $LOG)
+                    for CON in $coincidences
+                    do
+                        echo $LOG:$IP
+                    done
+                done
+                exit 0
             # IS IP
             else ip_checker $1
                 echo "Buscando "$1" en /var/log/auth.log"
-                echo $(grep -o "$1" /home/user/Descargas/Ejemplo_auth.log | wc -l) "$1"
+                echo $(grep -o "$1" /var/log/auth.log | wc -l) "$1" # He cambiado la ruta
         fi
 fi
 
 # DIRECOTIO AND IP
-if test -d $1 && ip_checker $2
+if test -d $1
 then
+    ip_checker $2
     echo $2 es una IP y $1 un directorio. Buscamos dentro:
     logsFiles=$(find $1 -name "*.log")
     for LOG in $logsFiles
     do
-        grep $2 $LOG
+        grep -H "$2" "$LOG"
     done
 fi
