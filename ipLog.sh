@@ -74,3 +74,4 @@ then
         grep -H "$2" "$LOG"
     done
 fi
+exit 0
