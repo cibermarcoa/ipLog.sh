@@ -63,15 +63,15 @@ if test $# = 1
         fi
 fi
 
-# DIRECOTIO AND IP
+# DIRECOTIO AND IP (esto esta bien y revisado pero el bucle se pilla)
 if test -d $1
 then
     ip_checker $2
     echo $2 es una IP y $1 un directorio. Buscamos dentro:
-    logsFiles=$(find $1 -name "*.log")
-    for LOG in $logsFiles
+    for LOG in $(find $1 -type f -name "*.log" 2>/dev/null)
     do
-        grep -H "$2" "$LOG"
+        grep -H "$2" "$LOG" 2>/dev/null
     done
 fi
+
 exit 0
