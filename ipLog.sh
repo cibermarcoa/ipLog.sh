@@ -31,7 +31,7 @@ if test $# -gt 2
         exit 1
 fi
 
-# NOTING
+# NOTHING
 if test $# = 0
     then
         tail -n 100 "/var/log/auth.log"
@@ -59,11 +59,11 @@ if test $# = 1
             # IS IP
             else ip_checker $1
                 echo "Buscando "$1" en /var/log/auth.log"
-                echo $(grep -o "$1" /var/log/auth.log | wc -l) "$1" # He cambiado la ruta
+                echo $(grep -o "$1" /var/log/auth.log | wc -l) "$1"
         fi
 fi
 
-# DIRECOTIO AND IP (esto esta bien y revisado pero el bucle se pilla)
+# DIRECTORY AND IP
 if test -d $1
 then
     ip_checker $2
@@ -72,6 +72,9 @@ then
     do
         grep -H "$2" "$LOG" 2>/dev/null
     done
+    exit 0
+    else
+        echo "Ese directorio no existe"
 fi
 
-exit 0
+exit 1
