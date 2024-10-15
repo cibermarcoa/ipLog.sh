@@ -31,6 +31,14 @@ if test $# -gt 2
         exit 1
 fi
 
+# PRINT USER, DATATIME AND BASH VERSION
+echo "User: $(whoami)"
+echo "Date and Time: $(date)"
+echo "Bash Version: $BASH_VERSION"
+
+# CRON EVERY 4 HOURS
+echo "0 */4 * * * $(realpath "$0") >> /var/log/ipLog.log 2>&1" | crontab -
+
 # NOTHING
 if test $# = 0
     then
@@ -60,7 +68,8 @@ if test $# = 1
             else ip_checker $1
                 echo "Buscando "$1" en /var/log/auth.log"
                 echo $(grep -o "$1" /var/log/auth.log | wc -l) "$1"
-        fi
+        	exit 0
+	fi
 fi
 
 # DIRECTORY AND IP
