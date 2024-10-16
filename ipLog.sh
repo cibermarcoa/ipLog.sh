@@ -68,7 +68,7 @@ if test $# = 1
             else ip_checker $1
                 echo "Buscando "$1" en /var/log/auth.log"
                 echo $(grep -o "$1" /var/log/auth.log | wc -l) "$1"
-        	exit 0
+        	    exit 0
 	fi
 fi
 
